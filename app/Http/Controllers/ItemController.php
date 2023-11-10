@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use Illuminate\Validation\Rule;
 class ItemController extends Controller
 {
     public function index()
     {
+$user = auth()->user();
 return view('items.index', [
-            'items' => Item::sortByNameAsc()->filter(
-                        request(['search'])
+            'items' => Item::where('user_id',$user->id)->sortByNameAsc()->filter(
+                        request(['search','category', 'author'])
                     )->paginate(6)->withQueryString()
         ]);
     }
@@ -24,13 +26,15 @@ return view('items.index', [
             [
                 'name' => 'required',
                 'quantity' => 'required',
-                'description' => 'required'
+                'description' => 'required',
+                'category_id' => ['required', Rule::exists('categories', 'id')],
+                'priority_id' => ['required', Rule::exists('priorities', 'id')]
                
             ]
             );
             $attributes['user_id'] = auth()->id();
             Item::create($attributes);
-            return redirect('/');
+            return redirect('/dashboard');
     }
     public function edit(Item $item) 
     {
@@ -42,12 +46,14 @@ return view('items.index', [
             [
                 'name' => 'required',
                 'quantity' => 'required',
-                'description' => 'required'
+                'description' => 'required',
+                'category_id' => ['required', Rule::exists('categories', 'id')],
+                'priority_id' => ['required', Rule::exists('priorities', 'id')]
                
             ]
             );
             $item->update($attributes);
-            return redirect('/')->with('success', 'Item Updated!');; 
+            return redirect('/dashboard')->with('success', 'Item Updated!');; 
     }
     public function destroy(Item $item)
     {
