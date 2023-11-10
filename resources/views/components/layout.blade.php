@@ -32,7 +32,6 @@
                 </a>
             </div>
             <!-- Search -->
-            @auth
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
             <form method="GET" action="/">
          <input type="text"
@@ -43,12 +42,25 @@
                 >
             </form>
         </div>
+        @auth
 <button class="py-2 pl-3 pr-9 text-sm font-semibold Uppercase">
 <x-dropdown-item
                                 href="/items/create"
                                 :active="request()->is('/items/create')"
                             >
                                  Create New Item
+                            </x-dropdown-item>
+                            <x-dropdown-item
+                                href="/categories/create"
+                                :active="request()->is('/categories/create')"
+                            >
+                                 Create New Category
+                            </x-dropdown-item>
+                            <x-dropdown-item
+                                href="/priorities/create"
+                                :active="request()->is('/priorities/create')"
+                            >
+                                 Create New Priority
                             </x-dropdown-item>
 </button>
 <button class="py-2 pl-3 pr-9 text-sm font-semibold Uppercase">
@@ -68,14 +80,19 @@
             <div class="mt-8 md:mt-0 flex items-center px-3 py-2">
             
                 @else
-                    <a href="/register"
+                <button>
+                <a href="/register"
                        class="text-xs font-bold uppercase {{ request()->is('register') ? 'text-blue-500' : '' }}">
                         Register
                     </a>
-                    <a href="/login"
+                </button>
+                   <button>
+                   <a href="/login"
                        class="mr-8 text-xs font-bold uppercase {{ request()->is('login') ? 'text-blue-500' : '' }}">
                         Log In
                     </a>
+                   </button>
+                   
                 @endauth
              
             </div>

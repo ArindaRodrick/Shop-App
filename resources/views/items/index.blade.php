@@ -5,52 +5,68 @@
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200">
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <thead>
                                 <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <th class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-4xl">
                                                     Name
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                            </th>
+                            <th class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-4xl">
                                                    Quantity
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                            </th>
+                            <th class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-4xl">
                                                     Description
                                                 </div>
                                             </div>
-                                        </td>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                            </th>
+                                        
+                            <th class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-4xl">
-                                                    Edit 
+                                                    Priorities 
                                                 </div>
                                             </div>
-                                        </td>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                            </th>
+                                        
+                            <th class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-4xl">
-                                                    Delete
+                                                    Edit Items
                                                 </div>
                                             </div>
-                                        </td>
+                            </th>
+                            <th class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="text-4xl">
+                                                    Delete Items
+                                                </div>
+                                            </div>
+                            </th>
                                         </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                            
                                 @foreach ($items as $item)
+                               
                                     <tr>
+                   
                                         <td class="px-6 py-4 whitespace-nowrap">
+                  
                                             <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    
+                                             <div class="text-sm font-medium text-gray-900">
+                                             <div class="space-x-2">
+                   <x-category-button :category="$item->category" />
+                </div>
+                     
                                                         {{ $item->name }}
                                                 </div>
                                             </div>
@@ -66,6 +82,13 @@
                                             <div class="flex items-center">
                                                 <div class="text-sm font-medium text-gray-900">
                                                         {{ $item->description }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="text-sm font-medium text-gray-900">
+                                                <x-priority-button :priority="$item->priority" />
                                                 </div>
                                             </div>
                                         </td>
