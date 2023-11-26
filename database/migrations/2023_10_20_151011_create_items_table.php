@@ -16,9 +16,11 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id');
             $table->foreignId('priority_id');
+            $table->string('slug')->unique();
             $table->text('name');
             $table->text('quantity');
             $table->text('description');
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }

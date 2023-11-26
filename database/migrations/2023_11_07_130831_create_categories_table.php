@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('name')->unique();
             $table->string('slug')->unique();
+            $table->text('description');
+            $table->string('thumbnail')->nullable();
+            $table->enum('status',['pending','in progress','completed'])->default('pending');
             $table->timestamps();
         });
     }
