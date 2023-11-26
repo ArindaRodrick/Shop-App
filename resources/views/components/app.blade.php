@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
    <input type="checkbox" id="menu-toggle">
@@ -97,6 +99,7 @@
                             href="#"
                             x-data="{}"
                             @click.prevent="document.querySelector('#logout-form').submit()"
+                            class="rounded-xl"
                         >
                             Log Out
                         </x-dropdown-item>

@@ -73,7 +73,7 @@
                                            @csrf
                                            @method('DELETE')
 
-                                           <button  class=" px-3 py-2 bg-red-500 rounded-xl" type ="submit" class ="btn-delete" onclick="return confirmDeleteItem()">Delete</button>
+                                           <button  class=" px-3 py-2 bg-red-500 rounded-xl" type ="submit" class ="btn-delete" onclick="return confirmDeleteCategory()">Delete</button>
                                        </form>
                                             </span>
                                             
