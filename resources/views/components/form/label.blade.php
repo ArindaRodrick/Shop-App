@@ -1,7 +1,7 @@
-@props(['name'])
 
-<label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-       for="{{ $name }}"
->
-    {{ ucwords($name) }}
-</label>
+
+@props(['value'])
+
+<label {{ $attributes->merge(['class' => 'block font-medium text-sm leading-6  text-gray-900']) }}>
+    {{ $value ?? $slot }}
+</label>       

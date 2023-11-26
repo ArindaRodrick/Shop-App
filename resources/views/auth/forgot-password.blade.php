@@ -1,4 +1,4 @@
-<x-layout>
+<x-guest>
 <section class="px-6 py-8">
         <main class="max-w-lg mx-auto mt-10">
 <x-panel>
@@ -14,18 +14,18 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-form.label for="email" :value="__('Email')" />
+            <x-form.text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <x-form.error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
+            <x-form.primary-button>
                 {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+            </x-form.primary-button>
         </div>
     </form>
     </main>
     </section>
 </x-panel>
-</x-layout>
+</x-guest>
