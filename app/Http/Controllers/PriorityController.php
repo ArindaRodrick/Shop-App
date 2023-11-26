@@ -9,14 +9,14 @@ class PriorityController extends Controller
 {
     public function index()
     {
-        return view('priorities.index', [
+        return view('admin.priorities.index', [
             'priorities' => Priority::paginate(50)
         ]);
     }
 
     public function create()
     {
-        return view('priorities.create');
+        return view('admin.priorities.create');
     }
 
     public function store()
@@ -26,12 +26,12 @@ class PriorityController extends Controller
         
         ]));
 
-        return redirect('/');
+        return redirect('/priorities');
     }
 
     public function edit(Priority $priority)
     {
-        return view('priorities.edit', ['priority' => $priority]);
+        return view('admin.priorities.edit', ['priority' => $priority]);
     }
 
     public function update(Priority $priority)
@@ -58,6 +58,7 @@ class PriorityController extends Controller
         return request()->validate([
             'name' => 'required',
             'slug' => ['required', Rule::unique('priorities', 'slug')->ignore($priority)],
+            'description' =>'required',
         ]);
     } 
 }

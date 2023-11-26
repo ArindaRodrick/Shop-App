@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Auth;
+use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
 class SessionsController extends Controller
 {
     public function create()
     {
-        return view('sessions.create');
+        return view('auth.login-user');
     }
 
     public function store()
@@ -26,7 +26,7 @@ class SessionsController extends Controller
 
         session()->regenerate();
 
-        return redirect('/dashboard')->with('success', 'Welcome Back!');
+        return redirect('/')->with('success', 'Welcome Back!');
     }
 
     public function destroy()

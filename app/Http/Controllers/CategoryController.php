@@ -10,20 +10,21 @@ class CategoryController extends Controller
     
         public function index()
         {
-            return view('categories.index', [
+            return view('admin.categories.index', [
                 'categories' => Category::paginate(50)
             ]);
         }
     
         public function create()
         {
-            return view('categories.create');
+            return view('admin.categories.create');
         }
     
         public function store()
         {
             Category::create(array_merge($this->validateCategory(), [
                 'user_id' => request()->user()->id,
+                'thumbnail' => request()->file('thumbnail')->store('thumbnails')
             
             ]));
     
@@ -32,13 +33,16 @@ class CategoryController extends Controller
     
         public function edit(Category $category)
         {
-            return view('categories.edit', ['category' => $category]);
+            return view('admin.categories.edit', ['category' => $category]);
         }
     
         public function update(Category $category)
         {
             $attributes = $this->validateCategory($category);
     
+            if ($attributes['thumbnail'] ?? false) {
+                $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+            }
            
             $category->update($attributes);
     
@@ -59,6 +63,9 @@ class CategoryController extends Controller
             return request()->validate([
                 'name' => 'required',
                 'slug' => ['required', Rule::unique('categories', 'slug')->ignore($category)],
+                'description' =>'required',
+                'thumbnail' => $category->exists ? ['image'] : ['required', 'image'],
+                'status' => 'required'
                
             ]);
         }

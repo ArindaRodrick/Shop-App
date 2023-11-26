@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
+use App\Http\Controllers\Controller;
 
 use App\Models\User;
 
@@ -8,7 +9,7 @@ class RegisterController extends Controller
 {
     public function create()
     {
-        return view('register.create');
+        return view('auth.register-user');
     }
 
     public function store()
@@ -22,7 +23,7 @@ class RegisterController extends Controller
 
         auth()->login(User::create($attributes));
 
-        return redirect('/dashboard')->with('success', 'Your account has been created.');
+        return redirect('/')->with('success', 'Your account has been created.');
     }
 }
 
